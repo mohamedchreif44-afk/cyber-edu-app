@@ -1,27 +1,32 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تطبيق الأمن السيبراني</title>
+  <title>تعلم الأمن السيبراني</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>👨‍💻 تعلم الأمن السيبراني</h1>
+    <h1>💻 تطبيق تعلم الأمن السيبراني</h1>
   </header>
 
   <main>
-    <section class="menu">
-      <button onclick="openLesson('basics')">أساسيات الأمن السيبراني</button>
-      <button onclick="openLesson('ethical-hacking')">الاختراق الأخلاقي</button>
-      <button onclick="openLesson('simulation')">محاكاة عملية 🔥</button>
-      <button onclick="openLesson('network')">شبكات الإنترنت</button>
+    <section>
+      <h2>ابدأ التعلم</h2>
+      <p>تعلم أساسيات القرصنة الأخلاقية، الشبكات، والهجمات الشائعة.</p>
+      <button onclick="startLearning()">ابدأ الآن</button>
+    </section>
+
+    <section id="lesson" class="hidden">
+      <h2 id="lesson-title"></h2>
+      <p id="lesson-content"></p>
+      <button onclick="nextLesson()">التالي</button>
     </section>
   </main>
 
   <footer>
-    <p>© 2025 صنع بواسطة إسلام 💻</p>
+    <p>© 2025 إسلام للأمن السيبراني</p>
   </footer>
 
   <script src="app.js"></script>
