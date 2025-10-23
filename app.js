@@ -1,15 +1,23 @@
 const lessons = [
   {
-    title: "ما هو الأمن السيبراني؟",
-    content: "هو علم حماية الأنظمة والشبكات من الهجمات الرقمية."
+    title: "مقدمة في الأمن السيبراني 🔒",
+    content: "الأمن السيبراني هو علم حماية الأنظمة من الهجمات الرقمية. سنتعلم كيف نفكر مثل الهاكر ولكن لحماية الأنظمة، لا لاختراقها."
   },
   {
-    title: "أنواع الهجمات",
-    content: "مثل هجمات الفيروسات، التصيد، والهندسة الاجتماعية."
+    title: "أنواع الهجمات 🧨",
+    content: "من أبرزها: التصيد Phishing، وهجمات DDoS، والبرمجيات الخبيثة Malware. كل نوع له طرق كشفه والتصدي له."
   },
   {
-    title: "القرصنة الأخلاقية",
-    content: "استخدام مهارات الاختراق لاختبار الحماية بشكل قانوني."
+    title: "أدوات القرصنة الأخلاقية 🧰",
+    content: "مثل Wireshark لتحليل الشبكات، و Nmap لفحص المنافذ، و Metasploit لاختبار الثغرات الأمنية."
+  },
+  {
+    title: "كيف تصبح هاكر أخلاقي 💻",
+    content: "ابدأ بتعلم الشبكات، ثم أنظمة Linux، ثم البرمجة (Python مثلاً)، وبعدها تعلّم أدوات الـ PenTesting."
+  },
+  {
+    title: "نهاية الدورة 🎓",
+    content: "أحسنت يا إسلام! أنت الآن تعرف الأساسيات. يمكنك تطوير نفسك أكثر عبر محاكاة عملية في المرحلة القادمة 🔥"
   }
 ];
 
@@ -31,7 +39,8 @@ function nextLesson() {
   if (currentLesson < lessons.length) {
     showLesson();
   } else {
-    document.getElementById("lesson-title").textContent = "🎉 أحسنت يا إسلام!";
-    document.getElementById("lesson-content").textContent = "لقد أكملت الدورة بنجاح 🚀";
+    document.getElementById("lesson-title").textContent = "🚀 انتهيت!";
+    document.getElementById("lesson-content").textContent = "أكملت كل الدروس يا إسلام، يمكنك الانتقال إلى قسم المحاكاة قريباً 💪";
+    document.getElementById("next-btn").style.display = "none";
   }
-}
+      }
