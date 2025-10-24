@@ -15,7 +15,7 @@ const lessonsContent = {
   ]
 };
 
-// Simulation challenges (safe, educational)
+// محاكاة تعليمية آمنة
 const simulations = {
   ar: [
     {
