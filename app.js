@@ -1,71 +1,61 @@
-// 🧠 محتوى الدروس
 const lessons = {
   intro: {
     title: "مقدمة في الأمن السيبراني",
     content: `
-      <p>الأمن السيبراني هو علم حماية الأنظمة والشبكات من الهجمات الإلكترونية. 👨‍💻</p>
-      <p>الهدف الأساسي هو <strong>منع الوصول غير المصرح به</strong> وحماية البيانات.</p>
+      <p>الأمن السيبراني هو علم حماية الأنظمة والشبكات من الهجمات الإلكترونية 👨‍💻</p>
+      <p>الهدف: فهم كيف يفكر الهاكر لحماية الأنظمة من التهديدات.</p>
       <ul>
-        <li>تعلم كيف يفكر الهاكر.</li>
-        <li>فهم نقاط الضعف في الأنظمة.</li>
-        <li>استخدام الأدوات الأخلاقية للتجربة والاختبار.</li>
+        <li>فهم أنواع الهجمات</li>
+        <li>تعلم الأدوات الدفاعية</li>
+        <li>التحليل و الرد على التهديدات</li>
       </ul>
-      <p>✨ تذكّر: القرصنة الأخلاقية تهدف إلى <strong>الحماية لا الإضرار</strong>.</p>
     `
   },
-
   network: {
     title: "أمن الشبكات",
     content: `
-      <p>أمن الشبكات يعني حماية البيانات أثناء انتقالها عبر الإنترنت أو الشبكات المحلية.</p>
-      <p>من أهم التقنيات المستخدمة:</p>
+      <p>يهتم أمن الشبكات بحماية نقل البيانات عبر الإنترنت.</p>
       <ul>
-        <li>جدران الحماية (Firewalls)</li>
-        <li>تشفير البيانات (Encryption)</li>
-        <li>VPN لحماية الاتصال</li>
+        <li>VPN وFirewalls</li>
+        <li>تحليل الحزم بـ Wireshark</li>
+        <li>كشف الثغرات في الشبكات</li>
       </ul>
-      <p>🔒 استخدم أدوات مثل <strong>Wireshark</strong> لتحليل الشبكات وفهم الثغرات.</p>
     `
   },
-
   web: {
-    title: "اختراق الويب الأخلاقي",
+    title: "اختراق الويب",
     content: `
-      <p>الويب هو أكثر مجال يتعرض للهجمات، لذا فهمه ضروري لأي مختبر اختراق.</p>
-      <p>أهم الثغرات التي يجب تعلمها:</p>
+      <p>تعلم اختبار أمان المواقع واكتشاف الثغرات.</p>
       <ul>
         <li>SQL Injection 💉</li>
-        <li>XSS - Cross Site Scripting ⚔️</li>
-        <li>CSRF - تزوير الطلبات</li>
+        <li>XSS (اختراق عبر السكريبت)</li>
+        <li>CSRF</li>
       </ul>
-      <p>🧰 استخدم أدوات مثل <strong>Burp Suite</strong> و <strong>OWASP ZAP</strong> لاختبار المواقع بشكل آمن.</p>
     `
   },
-
   tools: {
-    title: "أدوات الهاكر الأخلاقي",
+    title: "أدوات الهكر الأخلاقي",
     content: `
-      <p>من أهم الأدوات التي يستخدمها مختبرو الاختراق:</p>
       <ul>
-        <li><strong>Nmap</strong> — فحص الأجهزة والخدمات على الشبكة.</li>
-        <li><strong>Metasploit</strong> — لاختبار الثغرات واستغلالها بشكل قانوني.</li>
-        <li><strong>Hydra</strong> — لتجربة كلمات المرور.</li>
-        <li><strong>Kali Linux</strong> — النظام الأشهر لاختبار الاختراق.</li>
+        <li>Kali Linux</li>
+        <li>Metasploit Framework</li>
+        <li>Hydra</li>
+        <li>Nmap</li>
       </ul>
-      <p>⚠️ استخدم هذه الأدوات فقط على الأنظمة المصرح لك باختبارها!</p>
+      <p>⚠️ استخدم الأدوات في الأغراض الأخلاقية فقط!</p>
     `
   }
 };
 
-// 🧩 دالة عرض الدروس
-function showLesson(key) {
+function openLesson(key) {
   const lesson = lessons[key];
-  const box = document.getElementById("lesson");
+  const lessonScreen = document.getElementById('lessonScreen');
+  const lessonContent = document.getElementById('lessonContent');
 
-  if (lesson) {
-    box.innerHTML = `
-      <h2>${lesson.title}</h2>
-      <div>${lesson.content}</div>
-    `;
-  }
+  lessonContent.innerHTML = `<h2>${lesson.title}</h2>${lesson.content}`;
+  lessonScreen.classList.remove('hidden');
+}
+
+function closeLesson() {
+  document.getElementById('lessonScreen').classList.add('hidden');
 }
