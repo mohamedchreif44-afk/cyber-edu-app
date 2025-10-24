@@ -3,32 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cyber Edu App</title>
+  <title>Cyber Edu App - Hacker Mode</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>Cyber Edu App</h1>
-    <p class="subtitle">تعلم القرصنة الأخلاقية والأمن السيبراني 🔒</p>
-  </header>
+  <div class="terminal">
+    <div class="header">
+      <h1>🧠 Cyber Edu Terminal</h1>
+      <p class="subtitle">تعلم القرصنة الأخلاقية بأسلوب الهاكر الحقيقي 💻</p>
+    </div>
 
-  <main>
-    <section class="menu">
-      <button onclick="showLesson('intro')">📘 مقدمة في الأمن السيبراني</button>
-      <button onclick="showLesson('network')">🌐 أمن الشبكات</button>
-      <button onclick="showLesson('web')">💻 اختراق الويب الأخلاقي</button>
-      <button onclick="showLesson('tools')">🛠️ أدوات الهاكر الأخلاقي</button>
-    </section>
+    <div class="menu">
+      <button onclick="openLesson('intro')">مقدمة في الأمن السيبراني</button>
+      <button onclick="openLesson('network')">أمن الشبكات</button>
+      <button onclick="openLesson('web')">اختراق الويب</button>
+      <button onclick="openLesson('tools')">أدوات الهكر الأخلاقي</button>
+    </div>
 
-    <section id="lesson" class="lesson-box">
-      <h2>اختر درسًا للبدء</h2>
-      <p>اضغط على أحد الدروس في الأعلى لعرض المحتوى.</p>
-    </section>
-  </main>
+    <div id="lessonScreen" class="lesson-screen hidden">
+      <button class="close-btn" onclick="closeLesson()">×</button>
+      <div id="lessonContent" class="lesson-content"></div>
+    </div>
 
-  <footer>
-    <p>🚀 صُمم بواسطة <strong>Islam</strong> | نسخة تجريبية</p>
-  </footer>
+    <footer>
+      <p>© 2025 <strong>By Islam — Founder & Developer</strong> | Cyber Edu App</p>
+    </footer>
+  </div>
 
   <script src="app.js"></script>
 </body>
