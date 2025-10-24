@@ -3,33 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cyber Edu App - Hacker Mode</title>
+  <title>CyberEdu | تعليم الأمن السيبراني</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="terminal">
-    <div class="header">
-      <h1>🧠 Cyber Edu Terminal</h1>
-      <p class="subtitle">تعلم القرصنة الأخلاقية بأسلوب الهاكر الحقيقي 💻</p>
-    </div>
+  <header>
+    <h1>CyberEdu</h1>
+    <p>تعلم الأمن السيبراني والاختراق الأخلاقي باحتراف</p>
+  </header>
 
-    <div class="menu">
-      <button onclick="openLesson('intro')">مقدمة في الأمن السيبراني</button>
-      <button onclick="openLesson('network')">أمن الشبكات</button>
-      <button onclick="openLesson('web')">اختراق الويب</button>
-      <button onclick="openLesson('tools')">أدوات الهكر الأخلاقي</button>
-    </div>
+  <main class="menu">
+    <a href="lessons/lesson1.html" class="btn">🧠 مقدمة الأمن السيبراني</a>
+    <a href="lessons/lesson2.html" class="btn">💥 أنواع الهجمات</a>
+    <a href="lessons/lesson3.html" class="btn">🔐 حماية الحسابات</a>
+    <a href="lessons/lesson4.html" class="btn">🛠️ أدوات الهاكر الأخلاقي</a>
+    <a href="lessons/lesson5.html" class="btn">🧩 اختبار عملي</a>
+  </main>
 
-    <div id="lessonScreen" class="lesson-screen hidden">
-      <button class="close-btn" onclick="closeLesson()">×</button>
-      <div id="lessonContent" class="lesson-content"></div>
-    </div>
-
-    <footer>
-      <p>© 2025 <strong>By Islam — Founder & Developer</strong> | Cyber Edu App</p>
-    </footer>
-  </div>
-
-  <script src="app.js"></script>
+  <footer>
+    <p>⚡ المصدر: إسلام سعداوي | © 2025 CyberEdu</p>
+  </footer>
 </body>
 </html>
