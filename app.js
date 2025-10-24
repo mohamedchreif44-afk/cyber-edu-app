@@ -1,190 +1,71 @@
-// لغة افتراضية
-let lang = localStorage.getItem('ce_lang') || 'ar';
-let currentLessonIndex = 0;
-let xp = parseInt(localStorage.getItem('ce_xp') || '0', 10);
+// 🧠 محتوى الدروس
+const lessons = {
+  intro: {
+    title: "مقدمة في الأمن السيبراني",
+    content: `
+      <p>الأمن السيبراني هو علم حماية الأنظمة والشبكات من الهجمات الإلكترونية. 👨‍💻</p>
+      <p>الهدف الأساسي هو <strong>منع الوصول غير المصرح به</strong> وحماية البيانات.</p>
+      <ul>
+        <li>تعلم كيف يفكر الهاكر.</li>
+        <li>فهم نقاط الضعف في الأنظمة.</li>
+        <li>استخدام الأدوات الأخلاقية للتجربة والاختبار.</li>
+      </ul>
+      <p>✨ تذكّر: القرصنة الأخلاقية تهدف إلى <strong>الحماية لا الإضرار</strong>.</p>
+    `
+  },
 
-// عناصر الواجهة
-const home = document.getElementById("homeSection");
-const lessons = document.getElementById("lessonSection");
-const simulate = document.getElementById("simulateSection");
-const profile = document.getElementById("profileSection");
+  network: {
+    title: "أمن الشبكات",
+    content: `
+      <p>أمن الشبكات يعني حماية البيانات أثناء انتقالها عبر الإنترنت أو الشبكات المحلية.</p>
+      <p>من أهم التقنيات المستخدمة:</p>
+      <ul>
+        <li>جدران الحماية (Firewalls)</li>
+        <li>تشفير البيانات (Encryption)</li>
+        <li>VPN لحماية الاتصال</li>
+      </ul>
+      <p>🔒 استخدم أدوات مثل <strong>Wireshark</strong> لتحليل الشبكات وفهم الثغرات.</p>
+    `
+  },
 
-const homeBtn = document.getElementById("homeBtn");
-const learnBtn = document.getElementById("learnBtn");
-const simulateBtn = document.getElementById("simulateBtn");
-const profileBtn = document.getElementById("profileBtn");
-const langBtn = document.getElementById("langBtn");
+  web: {
+    title: "اختراق الويب الأخلاقي",
+    content: `
+      <p>الويب هو أكثر مجال يتعرض للهجمات، لذا فهمه ضروري لأي مختبر اختراق.</p>
+      <p>أهم الثغرات التي يجب تعلمها:</p>
+      <ul>
+        <li>SQL Injection 💉</li>
+        <li>XSS - Cross Site Scripting ⚔️</li>
+        <li>CSRF - تزوير الطلبات</li>
+      </ul>
+      <p>🧰 استخدم أدوات مثل <strong>Burp Suite</strong> و <strong>OWASP ZAP</strong> لاختبار المواقع بشكل آمن.</p>
+    `
+  },
 
-const startBtn = document.getElementById("startBtn");
-const nextLessonBtn = document.getElementById("nextLessonBtn");
-const xpSpan = document.getElementById("xp");
+  tools: {
+    title: "أدوات الهاكر الأخلاقي",
+    content: `
+      <p>من أهم الأدوات التي يستخدمها مختبرو الاختراق:</p>
+      <ul>
+        <li><strong>Nmap</strong> — فحص الأجهزة والخدمات على الشبكة.</li>
+        <li><strong>Metasploit</strong> — لاختبار الثغرات واستغلالها بشكل قانوني.</li>
+        <li><strong>Hydra</strong> — لتجربة كلمات المرور.</li>
+        <li><strong>Kali Linux</strong> — النظام الأشهر لاختبار الاختراق.</li>
+      </ul>
+      <p>⚠️ استخدم هذه الأدوات فقط على الأنظمة المصرح لك باختبارها!</p>
+    `
+  }
+};
 
-const simList = document.getElementById("sim-list");
-const simArea = document.getElementById("simulation-area");
-const simBack = document.getElementById("sim-back");
-const simSubmit = document.getElementById("sim-submit");
-const simInput = document.getElementById("sim-input");
-const simPrompt = document.getElementById("sim-prompt");
-const simFeedback = document.getElementById("sim-feedback");
-const simTitle = document.getElementById("sim-ch-title");
-const simDesc = document.getElementById("sim-ch-desc");
+// 🧩 دالة عرض الدروس
+function showLesson(key) {
+  const lesson = lessons[key];
+  const box = document.getElementById("lesson");
 
-homeBtn.onclick = () => showSection("home");
-learnBtn.onclick = () => showSection("lessons");
-simulateBtn.onclick = () => showSection("simulate");
-profileBtn.onclick = () => showSection("profile");
-langBtn.onclick = toggleLang;
-
-startBtn.onclick = () => { startLearning(); showSection("lessons"); };
-nextLessonBtn.onclick = nextLesson;
-
-simBack.onclick = () => { simArea.classList.add('hidden'); simList.classList.remove('hidden'); simFeedback.textContent = ''; simInput.value = ''; };
-
-simSubmit.onclick = checkSimAnswer;
-
-document.addEventListener('DOMContentLoaded', () => {
-  renderUI();
-  xpSpan.textContent = xp;
-});
-
-// --- العرض والتنقل
-function showSection(name) {
-  [home, lessons, simulate, profile].forEach(sec => sec.classList.add("hidden"));
-  document.querySelectorAll("nav .nav-left button").forEach(btn => btn.classList.remove("active"));
-  switch (name) {
-    case "home": home.classList.remove("hidden"); homeBtn.classList.add("active"); break;
-    case "lessons": lessons.classList.remove("hidden"); learnBtn.classList.add("active"); break;
-    case "simulate": simList.classList.remove("hidden"); simulate.classList.remove("hidden"); simulateBtn.classList.add("active"); break;
-    case "profile": profile.classList.remove("hidden"); profileBtn.classList.add("active"); break;
+  if (lesson) {
+    box.innerHTML = `
+      <h2>${lesson.title}</h2>
+      <div>${lesson.content}</div>
+    `;
   }
 }
-
-// --- اللغة
-function toggleLang() {
-  lang = (lang === 'ar') ? 'en' : 'ar';
-  localStorage.setItem('ce_lang', lang);
-  renderUI();
-}
-
-function renderUI() {
-  // نصوص الواجهة
-  if (lang === 'ar') {
-    document.documentElement.lang = 'ar';
-    document.documentElement.dir = 'rtl';
-    document.getElementById('app-title').textContent = '🔒 Cyber Edu';
-    document.getElementById('welcome-title').textContent = 'مرحبًا بك يا إسلام 👋';
-    document.getElementById('welcome-desc').textContent = 'تعلّم الأمن السيبراني والاختراق الأخلاقي خطوة بخطوة من خلال دروس عملية وتفاعلية.';
-    startBtn.textContent = 'ابدأ الآن 🚀';
-    nextLessonBtn.textContent = 'التالي ▶️';
-    document.getElementById('simulate-title').textContent = '🧠 محاكاة عملية';
-    document.getElementById('simulate-desc').textContent = 'تعلم عبر تحديات آمنة داخل المتصفح — حل التحدي للحصول على نقاط XP.';
-    document.getElementById('profile-title').textContent = '👤 الملف الشخصي';
-    document.getElementById('profile-name').textContent = 'الاسم: إسلام';
-    document.getElementById('profile-level').textContent = 'المستوى: مبتدئ 🔰';
-    langBtn.textContent = 'EN';
-  } else {
-    document.documentElement.lang = 'en';
-    document.documentElement.dir = 'ltr';
-    document.getElementById('app-title').textContent = '🔒 Cyber Edu';
-    document.getElementById('welcome-title').textContent = 'Welcome, Islam 👋';
-    document.getElementById('welcome-desc').textContent = 'Learn cybersecurity & ethical hacking step-by-step with practical interactive lessons.';
-    startBtn.textContent = 'Start Now 🚀';
-    nextLessonBtn.textContent = 'Next ▶️';
-    document.getElementById('simulate-title').textContent = '🧠 Simulation';
-    document.getElementById('simulate-desc').textContent = 'Learn with safe in-browser challenges — solve to earn XP.';
-    document.getElementById('profile-title').textContent = '👤 Profile';
-    document.getElementById('profile-name').textContent = 'Name: Islam';
-    document.getElementById('profile-level').textContent = 'Level: Beginner 🔰';
-    langBtn.textContent = 'AR';
-  }
-
-  // دروس
-  currentLessonIndex = 0;
-  renderLesson();
-  // محاكاة
-  renderSimList();
-  xpSpan.textContent = xp;
-}
-
-function renderLesson() {
-  const item = lessonsContent[lang][currentLessonIndex];
-  if (item) {
-    document.getElementById('lesson-title').textContent = item.title;
-    document.getElementById('lesson-content').textContent = item.content;
-  }
-}
-
-function startLearning() {
-  currentLessonIndex = 0;
-  showSection('lessons');
-  renderLesson();
-}
-
-function nextLesson() {
-  xp += 10;
-  localStorage.setItem('ce_xp', xp);
-  xpSpan.textContent = xp;
-  currentLessonIndex++;
-  if (currentLessonIndex < lessonsContent[lang].length) {
-    renderLesson();
-  } else {
-    document.getElementById('lesson-title').textContent = (lang === 'ar') ? '🎉 أحسنت!' : '🎉 Well done!';
-    document.getElementById('lesson-content').textContent = (lang === 'ar') ? 'لقد أكملت جميع الدروس.' : 'You completed all lessons.';
-    nextLessonBtn.style.display = 'none';
-  }
-}
-
-// --- محاكاة: عرض القائمة
-function renderSimList() {
-  simList.innerHTML = '';
-  const arr = simulations[lang];
-  arr.forEach(s => {
-    const card = document.createElement('div');
-    card.className = 'sim-card';
-    const left = document.createElement('div');
-    left.innerHTML = `<strong>${s.title}</strong><div style="opacity:0.8;margin-top:6px">${s.desc}</div>`;
-    const btn = document.createElement('button');
-    btn.textContent = (lang === 'ar') ? 'ابدأ' : 'Start';
-    btn.onclick = () => openSim(s.id);
-    card.appendChild(left);
-    card.appendChild(btn);
-    simList.appendChild(card);
-  });
-  simList.classList.remove('hidden');
-  simArea.classList.add('hidden');
-}
-
-// فتح تحدي
-let currentSim = null;
-function openSim(id) {
-  const s = simulations[lang].find(x => x.id === id);
-  if (!s) return;
-  currentSim = s;
-  simTitle.textContent = s.title;
-  simDesc.textContent = s.desc;
-  simPrompt.textContent = s.prompt;
-  simInput.value = '';
-  simFeedback.textContent = '';
-  simList.classList.add('hidden');
-  simArea.classList.remove('hidden');
-}
-
-// التحقق من الإجابة
-function checkSimAnswer() {
-  if (!currentSim) return;
-  const user = simInput.value.trim();
-  if (!user) {
-    simFeedback.textContent = (lang === 'ar') ? 'أدخل قيمة أولاً.' : 'Please enter a value.';
-    return;
-  }
-  if (user === currentSim.answer) {
-    simFeedback.textContent = (lang === 'ar') ? 'صحيح! حصلت على 20 XP 🎉' : 'Correct! You earned 20 XP 🎉';
-    xp += 20;
-    localStorage.setItem('ce_xp', xp);
-    xpSpan.textContent = xp;
-    // إخفاء زر التقديم
-    simSubmit.disabled = true;
-  } else {
-    simFeedback.textContent = (lang === 'ar') ? 'الإجابة غير صحيحة، جرّب مرة أخرى.' : 'Wrong answer, try again.';
-  }
-    }
