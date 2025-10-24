@@ -1,72 +1,35 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cyber Edu App</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1 id="app-title">🔒 Cyber Edu</h1>
-    <nav>
-      <div class="nav-left">
-        <button id="homeBtn" class="active">🏠</button>
-        <button id="learnBtn">📘</button>
-        <button id="simulateBtn">🧠</button>
-        <button id="profileBtn">👤</button>
-      </div>
-      <div class="nav-right">
-        <button id="langBtn">EN</button>
-      </div>
-    </nav>
+    <h1>Cyber Edu App</h1>
+    <p class="subtitle">تعلم القرصنة الأخلاقية والأمن السيبراني 🔒</p>
   </header>
 
-  <main id="content">
-    <section id="homeSection">
-      <h2 id="welcome-title">مرحبًا بك يا إسلام 👋</h2>
-      <p id="welcome-desc">تعلّم الأمن السيبراني والاختراق الأخلاقي خطوة بخطوة من خلال دروس عملية وتفاعلية.</p>
-      <button id="startBtn">ابدأ الآن 🚀</button>
+  <main>
+    <section class="menu">
+      <button onclick="showLesson('intro')">📘 مقدمة في الأمن السيبراني</button>
+      <button onclick="showLesson('network')">🌐 أمن الشبكات</button>
+      <button onclick="showLesson('web')">💻 اختراق الويب الأخلاقي</button>
+      <button onclick="showLesson('tools')">🛠️ أدوات الهاكر الأخلاقي</button>
     </section>
 
-    <section id="lessonSection" class="hidden">
-      <h2 id="lesson-title"></h2>
-      <p id="lesson-content"></p>
-      <div class="lesson-controls">
-        <button id="nextLessonBtn">التالي ▶️</button>
-      </div>
-    </section>
-
-    <section id="simulateSection" class="hidden">
-      <h2 id="simulate-title">🧠 محاكاة عملية</h2>
-      <p id="simulate-desc">تعلم عبر تحديات آمنة داخل المتصفح — حل التحدي للحصول على نقاط XP.</p>
-
-      <div id="sim-list"></div>
-
-      <div id="simulation-area" class="hidden">
-        <h3 id="sim-ch-title"></h3>
-        <p id="sim-ch-desc"></p>
-
-        <div id="sim-interactive">
-          <label id="sim-prompt" for="sim-input"></label>
-          <input id="sim-input" placeholder="" />
-          <button id="sim-submit">تقديم</button>
-        </div>
-
-        <p id="sim-feedback"></p>
-        <button id="sim-back">العودة للتحديات</button>
-      </div>
-    </section>
-
-    <section id="profileSection" class="hidden">
-      <h2 id="profile-title">👤 الملف الشخصي</h2>
-      <p id="profile-name">الاسم: إسلام</p>
-      <p id="profile-level">المستوى: مبتدئ 🔰</p>
-      <p id="profile-xp">نقاط الخبرة: <span id="xp">0</span></p>
+    <section id="lesson" class="lesson-box">
+      <h2>اختر درسًا للبدء</h2>
+      <p>اضغط على أحد الدروس في الأعلى لعرض المحتوى.</p>
     </section>
   </main>
 
-  <script src="lessons.js"></script>
+  <footer>
+    <p>🚀 صُمم بواسطة <strong>Islam</strong> | نسخة تجريبية</p>
+  </footer>
+
   <script src="app.js"></script>
 </body>
 </html>
